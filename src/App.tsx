@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {useQuery} from '@apollo/client';
+import {useState} from "react";
+import {GET_COUNTRIES} from "./apollo/queries";
+import Countries from "./components/Countries/Countries";
+import Header from "./components/Header/Header";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const {data} = useQuery(GET_COUNTRIES);
+    // if (loading) return <p>Loading...</p>;
+    // if (error) return <p>Error : {error.message}</p>;
+    const [country, setCountry] = useState('')
+
+    return (
+        <div className="container">
+            <Header setCountry={setCountry}/>
+            <Countries countrySearchName={country} setCountry={setCountry} countries={data}/>
+        </div>
+    );
 }
 
 export default App;
