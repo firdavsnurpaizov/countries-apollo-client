@@ -1,7 +1,12 @@
 .wrapper {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
   gap: 16px;
+
+  margin-top: 81px;
+  padding: 16px;
+  min-height: 100vh;
+
+  background-color: #d4e9ff;
 }

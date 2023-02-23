@@ -4,6 +4,7 @@ import {useQuery} from "@apollo/client";
 import {GET_COUNTRY} from "../../apollo/queries";
 import CountryCard from "../CountryCard/CountryCard";
 import styles from "./Countries.module.scss"
+import {Loader} from "../common/Loader";
 
 type IProps = {
     countrySearchName: string
@@ -28,7 +29,7 @@ const Countries = ({countrySearchName, setCountry, countries}: IProps) => {
             }
         },
     })
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <Loader/>;
     if (error) return <div>`Error! ${error.message}`</div>
 
     console.log(country?.countries, "COUNTRY")

@@ -4,12 +4,12 @@ import {useState} from "react";
 import {GET_COUNTRIES} from "./apollo/queries";
 import Countries from "./components/Countries/Countries";
 import Header from "./components/Header/Header";
+import {Loader} from "./components/common/Loader";
 
 function App() {
-    const {data} = useQuery(GET_COUNTRIES);
-    // if (loading) return <p>Loading...</p>;
-    // if (error) return <p>Error : {error.message}</p>;
+    const {data, loading} = useQuery(GET_COUNTRIES);
     const [country, setCountry] = useState('')
+    if (loading) return <Loader/>;
 
     return (
         <div className="container">

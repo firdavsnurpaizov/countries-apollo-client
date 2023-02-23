@@ -1,7 +1,7 @@
 import {gql} from "@apollo/client";
 
 export const GET_COUNTRIES = gql`
-    query countries{
+    query countries {
       countries {
         code
         name
@@ -26,7 +26,7 @@ export const GET_COUNTRIES = gql`
 `
 
 export const GET_COUNTRY = gql`
-query countries ($filter: CountryFilterInput ) {
+query countries ($filter: CountryFilterInput) {
   countries (filter: $filter) {
     code
     name
