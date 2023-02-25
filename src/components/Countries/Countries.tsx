@@ -5,11 +5,12 @@ import {GET_COUNTRY} from "../../apollo/queries";
 import CountryCard from "../CountryCard/CountryCard";
 import styles from "./Countries.module.scss"
 import {Loader} from "../common/Loader";
+import {Query} from "../../types";
 
 type IProps = {
     countrySearchName: string
     setCountry: (value: string) => void
-    countries: any
+    countries: Query
 }
 
 const Countries = ({countrySearchName, setCountry, countries}: IProps) => {
@@ -20,7 +21,7 @@ const Countries = ({countrySearchName, setCountry, countries}: IProps) => {
         debouncedSearchTerm && setCountry(debouncedSearchTerm)
     }, [debouncedSearchTerm])
 
-    const {loading, error, data: country} = useQuery(GET_COUNTRY, {
+    const {loading, error, data: country} = useQuery<Query>(GET_COUNTRY, {
         variables: {
             "filter": {
                 "code": {
@@ -31,10 +32,6 @@ const Countries = ({countrySearchName, setCountry, countries}: IProps) => {
     })
     if (loading) return <Loader/>;
     if (error) return <div>`Error! ${error.message}`</div>
-
-    console.log(country?.countries, "COUNTRY")
-    // console.log(countries?.countries.length, "COUNTRIES")
-
 
     return (
         <div className="container">
