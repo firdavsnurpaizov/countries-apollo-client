@@ -3,9 +3,10 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import styles from "./CountryCard.module.scss"
+import {Country} from "../../types";
 
 type Props = {
-    item: any
+    item: Country
 }
 
 export default function CountryCard({item}: Props) {
